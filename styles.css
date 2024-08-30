@@ -62,7 +62,7 @@ h2 {
 
 .buscador {
     width: 100%;
-    max-width: 600px;
+    max-width: 1000px;
     /* Ancho máximo del buscador */
     margin: 20px auto;
     /* Centrar el buscador */
