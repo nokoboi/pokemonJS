@@ -54,9 +54,8 @@ obtenerLanzamientos()
 
 function comparar(){
     const pokemonBuscado = inputPokemon.value.toLowerCase().trim();
-
-    // Muestra el valor en la consola o úsalo para buscar un Pokémon
     console.log('Valor ingresado:', pokemonBuscado);
+    
     if(pokemonBuscado===pokemonAleatorio){
         puntuacion++;
         pPuntuacion.textContent = puntuacion
