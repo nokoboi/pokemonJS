@@ -1,4 +1,165 @@
-.img{
-    width: 200px;
-    height: 200px;
+.img {
+    width: 250px;
+    height: 250px;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: rgb(50, 38, 255);
+    background: linear-gradient(180deg, rgba(50, 38, 255, 1) 0%, rgba(86, 86, 255, 1) 35%, rgba(185, 243, 255, 1) 100%);
+}
+
+.enlaces {
+    width: 100%;
+    background: rgb(27, 15, 252);
+    color: white;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: #FFD700 0.3rem solid;
+}
+
+.enlaces a {
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease, border-radius 0.3s ease;
+}
+
+.enlaces a:hover {
+    background-color: #FFD700;
+    color: black;
+    border-radius: 1rem;
+}
+
+header h1,
+h2 {
+    text-align: center;
+    color:#FFD700
+}
+
+.descripcion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.descripcion div{
+    background-color: #f8f8f8AA;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: bold;
+}
+
+.buscador {
+    width: 100%;
+    max-width: 600px;
+    /* Ancho máximo del buscador */
+    margin: 20px auto;
+    /* Centrar el buscador */
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    background-color: #f8f8f8;
+    /* Fondo claro */
+    display: flex;
+}
+
+.buscador input[type="text"] {
+    width: 100%;
+    /* Hacer que el input ocupe todo el ancho del contenedor */
+    padding: 10px;
+    border: 2px solid #ccc;
+    /* Borde gris claro */
+    border-radius: 4px;
+    /* Bordes ligeramente redondeados */
+    font-size: 16px;
+    /* Tamaño de fuente legible */
+    box-sizing: border-box;
+    /* Asegura que el padding no afecte el ancho total */
+    outline: none;
+    /* Elimina el borde azul al hacer click */
+    transition: border-color 0.3s;
+    /* Transición suave para el cambio de borde */
+}
+
+.buscador input[type="text"]:focus {
+    border-color: #007BFF;
+    /* Cambio de color de borde al hacer focus */
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    /* Sombra azul al enfocar */
+}
+
+.buscador img {
+    width: 50px;
+    height: 50px;
+}
+
+.buscador button {
+    padding: 10px 20px;
+    border: none; /* Sin borde */
+    border-radius: 0 4px 4px 0; /* Bordes redondeados solo en la derecha */
+    background-color: #007BFF; /* Fondo azul */
+    color: white; /* Texto blanco */
+    font-size: 16px; /* Tamaño de fuente */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave para el cambio de fondo */
+}
+
+.buscador button:hover {
+    background-color: #0056b3; /* Fondo más oscuro al pasar sobre el botón */
+}
+
+.cardAleatorio {
+    max-width: 1000px;
+    margin:auto;
+    text-align: center;
+    background-color: #f8f8f8AA;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.puntuacion{
+    display: flex;
+    justify-content: center;
+}
+
+.puntuacion p{
+    background-color: #f8f8f8AA;
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-right: 0.5rem;
+    border-radius: 1rem;
+}
+
+.desc{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.estrella {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #FFD700;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%,
+            50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    transition: all 0.3s ease;
+    opacity: 0.9;
+    z-index: -1;
+}
+
+h1 {
+    color: #FFD700
 }

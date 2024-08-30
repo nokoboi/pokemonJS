@@ -1,21 +1,27 @@
 const contenedor = document.getElementById('container');
+const btnAleatorio = document.getElementById('btnAleatorio');
+const inputPokemon = document.getElementById('inputPokemon');
+const pPuntuacion = document.getElementById('punt')
+let pokemonAleatorio = '';
+let puntuacion = 0;
 
-var Pokemon = new Array("Bulbasaur", "Ivysaur", "Venusaur", "Charmander", "Charmeleon", "Charizard", "Squirtle", "Wartortle", "Blastoise", "Caterpie", "Metapod", "Butterfree", "Weedle", "Kakuna", "Beedrill", "Pidgey", "Pidgeotto", "Pidgeot", "Rattata", "Raticate", "Spearow", "Fearow", "Ekans", "Arbok", "Pikachu", "Raichu", "Sandshrew", "Sandslash", "Nidoran", "Nidorina", "Nidoqueen", "Nidoran", "Nidorino", "Nidoking", "Clefairy", "Clefable", "Vulpix", "Ninetales", "Jigglypuff", "Wigglytuff", "Zubat", "Golbat", "Oddish", "Gloom", "Vileplume", "Paras", "Parasect", "Venonat", "Venomoth", "Diglett", "Dugtrio", "Meowth", "Persian", "Psyduck", "Golduck", "Mankey", "Primeape", "Growlithe", "Arcanine", "Poliwag", "Poliwhirl", "Poliwrath", "Abra", "Kadabra", "Alakazam", "Machop", "Machoke", "Machamp", "Bellsprout", "Weepinbell", "Victreebel", "Tentacool", "Tentacruel", "Geodude", "Graveler", "Golem", "Ponyta", "Rapidash", "Slowpoke", "Slowbro", "Magnemite", "Magneton", "Farfetch'd", "Doduo", "Dodrio", "Seel", "Dewgong", "Grimer", "Muk", "Shellder", "Cloyster", "Gastly", "Haunter", "Gengar", "Onix", "Drowzee", "Hypno", "Krabby", "Kingler", "Voltorb", "Electrode", "Exeggcute", "Exeggutor", "Cubone", "Marowak", "Hitmonlee", "Hitmonchan", "Lickitung", "Koffing", "Weezing", "Rhyhorn", "Rhydon", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Seadra", "Goldeen", "Seaking", "Staryu", "Starmie", "Mr. Mime", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Gyarados", "Lapras", "Ditto", "Eevee", "Vaporeon", "Jolteon", "Flareon", "Porygon", "Omanyte", "Omastar", "Kabuto", "Kabutops", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Dragonair", "Dragonite", "Mewtwo", "Mew");
-
-let pokAleatorio = Math.floor(Math.random() * Pokemon.length);
-console.log(Pokemon[pokAleatorio])
-
-const urlPokemon = `https://pokeapi.co/api/v2/pokemon/${Pokemon[pokAleatorio].toLowerCase()}`;
+const urlPokemon = `https://pokeapi.co/api/v2/pokemon?limit=1007`;
 
 async function obtenerLanzamientos() {
     const resultado = await fetch(urlPokemon);
-    const datos = await resultado.json();
+    const datos = await resultado.json();    
 
-    
+    const pokAleatorio = datos.results[Math.floor(Math.random()*datos.results.length)]
+    // console.log('Pokémon aleatorio seleccionado:', pokAleatorio);
 
-    console.log(datos)
+    const pokemonData = await fetch(pokAleatorio.url);
+    const pokemonInfo = await pokemonData.json();
+
+    pokemonAleatorio = pokemonInfo.name;
+
+    // console.log(datos)
     
-    mostrarDatos(datos)
+    mostrarDatos(pokemonInfo)
 
 
     // fetch(urlLanzamientos)
@@ -32,17 +38,92 @@ async function mostrarDatos(pokemon){
     const descripcion = await fetch(pokemon.species.url)
     const desc = await descripcion.json();
 
-    console.log(desc.flavor_text_entries)
+    // Busca la primera entrada en español
+    const flavorTextEntry = desc.flavor_text_entries.find(entry => entry.language.name === 'es');
+
+    // Si se encuentra una entrada en español, se usa esa, de lo contrario se da un mensaje por defecto
+    const flavorText = flavorTextEntry ? flavorTextEntry.flavor_text : 'Descripción no disponible en español.';
 
     contenedor.innerHTML = `
-            <p>Nombre del Pokémon: ${Pokemon[pokAleatorio]}</p>
-            <p>Imagen:</p>
-            <img class="img" src='${pokemon.sprites.front_default}'/>
-            <p>Descripción: ${desc.flavor_text_entries[42].flavor_text}
-            <p>-------------</p>
-        `
+        <img class="img" src='${pokemon.sprites.front_default}'/>
+        <p class="desc">Descripción: ${flavorText}</p>
+    `;
 }
 
-
-
 obtenerLanzamientos()
+
+function comparar(){
+    const pokemonBuscado = inputPokemon.value.toLowerCase().trim();
+
+    // Muestra el valor en la consola o úsalo para buscar un Pokémon
+    console.log('Valor ingresado:', pokemonBuscado);
+    if(pokemonBuscado===pokemonAleatorio){
+        puntuacion++;
+        pPuntuacion.textContent = puntuacion
+        inputPokemon.value = '';
+        console.log(puntuacion)
+    }else{
+        inputPokemon.value = '';
+    }
+
+    obtenerLanzamientos()
+}
+
+btnAleatorio.addEventListener('click', comparar);
+inputPokemon.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        comparar();
+    }
+});
+
+// Efectos
+function crearEstrella(x, y, tamaño) {
+    const estrella = document.createElement('div');
+    estrella.classList.add('estrella');
+    estrella.style.left = x + 'px';
+    estrella.style.top = y + 'px';
+    estrella.style.transform = `scale(${tamaño})`;
+    document.body.appendChild(estrella);
+    return estrella;
+}
+
+function brillarEstrella(estrella) {
+    const escalaActual = parseFloat(estrella.style.transform.match(/scale\((.*?)\)/)[1]);
+    estrella.style.transform = `scale(${escalaActual * 1.2})`;
+    estrella.style.opacity = '1';
+    setTimeout(() => {
+        estrella.style.transform = `scale(${escalaActual})`;
+        estrella.style.opacity = '0.9';
+    }, 300);
+}
+
+function crearEstrellas() {
+    const estrellas = [];
+    const numEstrellas = 100;
+    const ancho = window.innerWidth;
+    const alto = window.innerHeight;
+
+    for (let i = 0; i < numEstrellas; i++) {
+        const x = Math.random() * ancho;
+        const y = Math.random() * alto;
+        const tamaño = Math.random() * 0.5 + 0.5; // Tamaño entre 0.5 y 1
+        estrellas.push(crearEstrella(x, y, tamaño));
+    }
+
+    return estrellas;
+}
+
+const estrellas = crearEstrellas();
+
+// Hacer que las estrellas brillen aleatoriamente
+setInterval(() => {
+    const indice = Math.floor(Math.random() * estrellas.length);
+    brillarEstrella(estrellas[indice]);
+}, 100);
+
+// Ajustar las estrellas cuando se cambia el tamaño de la ventana
+window.addEventListener('resize', () => {
+    estrellas.forEach(estrella => estrella.remove());
+    estrellas.length = 0;
+    estrellas.push(...crearEstrellas());
+});

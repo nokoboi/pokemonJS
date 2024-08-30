@@ -1,21 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <header>
-        <h1>Pokémon Aleatorio</h1>
-    </header>
-    </h1>
-    <div id="container">
+        <nav class="enlaces">
+            <a href="">Buscador</a>
+            <a href="">Pokémon del día</a>
+            <a href="">Iniciales</a>
+        </nav>
+        <div class="descripcion">
+            <h1>¡Pokémon del día!</h1>
+            <h2>¿Cuál es este pokemon?</h2>
+            <div>
+                <p>¡Acierta el pokémon diario! O si lo prefieres puedes intentar acertarlos a todos.</p>
+            </div>
+        </div>
 
+    </header>
+
+    <div class="buscador">
+        <img src="assets/logo.webp" alt="">
+        <input id="inputPokemon" type="text" placeholder="Tu respuesta aqui...">
+        <button id="btnAleatorio" type="button">Enviar</button>
+    </div>
+
+    <div class="cardAleatorio" id="container">
+
+    </div>
+
+    <div class="puntuacion">
+        <p>
+            Puntuación:
+        </p>
+        <p id="punt">
+            0
+        </p>
     </div>
 
 
     <script src="js/funciones.js"></script>
 </body>
+
 </html>
