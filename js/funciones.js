@@ -79,11 +79,45 @@ inputPokemon.addEventListener('keydown', (event) => {
 function crearEstrella(x, y, tamaño) {
     const estrella = document.createElement('div');
     estrella.classList.add('estrella');
+
+    // Tamaño base adaptable
+    let baseSize;
+    
+    // Ajuste del tamaño según el ancho de la pantalla
+    if (window.innerWidth > 1024) {
+        baseSize = 40; // Tamaño base mayor para pantallas grandes
+    } else if (window.innerWidth > 768) {
+        baseSize = 20; // Tamaño base intermedio para tabletas
+    } else {
+        baseSize = 20; // Tamaño base para móviles
+    }
+
+    const anchoEstrella = baseSize * tamaño; // Multiplica el tamaño base por el tamaño calculado
+    estrella.style.width = anchoEstrella + 'px';
+    estrella.style.height = anchoEstrella + 'px';
     estrella.style.left = x + 'px';
     estrella.style.top = y + 'px';
     estrella.style.transform = `scale(${tamaño})`;
+    estrella.style.position = 'absolute';
     document.body.appendChild(estrella);
     return estrella;
+}
+
+function crearEstrellas() {
+    const estrellas = [];
+    const numEstrellas = 100;
+    const ancho = window.innerWidth;
+    const alto = window.innerHeight;
+
+    for (let i = 0; i < numEstrellas; i++) {
+        const tamaño = Math.random() * 0.5 + 0.5; // Tamaño entre 0.5 y 1
+        const anchoEstrella = 20 * tamaño; // Ajusta según baseSize en `crearEstrella`
+        const x = Math.random() * (ancho - anchoEstrella);
+        const y = Math.random() * (alto - anchoEstrella);
+        estrellas.push(crearEstrella(x, y, tamaño));
+    }
+
+    return estrellas;
 }
 
 function brillarEstrella(estrella) {
@@ -94,22 +128,6 @@ function brillarEstrella(estrella) {
         estrella.style.transform = `scale(${escalaActual})`;
         estrella.style.opacity = '0.9';
     }, 300);
-}
-
-function crearEstrellas() {
-    const estrellas = [];
-    const numEstrellas = 100;
-    const ancho = window.innerWidth;
-    const alto = window.innerHeight;
-
-    for (let i = 0; i < numEstrellas; i++) {
-        const x = Math.random() * ancho;
-        const y = Math.random() * alto;
-        const tamaño = Math.random() * 0.5 + 0.5; // Tamaño entre 0.5 y 1
-        estrellas.push(crearEstrella(x, y, tamaño));
-    }
-
-    return estrellas;
 }
 
 const estrellas = crearEstrellas();
@@ -126,3 +144,7 @@ window.addEventListener('resize', () => {
     estrellas.length = 0;
     estrellas.push(...crearEstrellas());
 });
+
+// Evitar scroll lateral forzando overflow-x en el body
+document.body.style.overflowX = 'hidden';
+document.body.style.margin = '0'; // Elimina márgenes del body
