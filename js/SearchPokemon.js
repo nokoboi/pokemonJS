@@ -16,6 +16,7 @@ let currentOffset = 0;
 const limit = 20;
 
 async function displayPokemon() {
+    
     const pokeCargados = await obtenerPokemon(limit, currentOffset);
     let contenedor = '';
 
@@ -88,7 +89,7 @@ async function mostrarPokemonsFiltrados(nombre) {
     if (detallesPokemons.length > 0) {
         contenedor = detallesPokemons.map(pokemon => `
             <div class="pokemon-card">
-                <h3>${pokemon.name}</h3>
+                <h3>${capitalizeFirstLetter(pokemon.name)}</h3>
                 <img class="sprite" src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
                 <a href="#">Ver más...</a>
             </div>
@@ -113,9 +114,10 @@ document.getElementById('pokemon-search').addEventListener('input', async () => 
 });
 // fin busqueda pokemon
 
+// Botones de paginacion
 function updatePaginationButtons() {
     document.getElementById('prevButton').style.display = currentOffset > 0 ? 'inline' : 'none';
-    document.getElementById('nextButton').style.display = true; // Assume there are more Pokémon
+    document.getElementById('nextButton').style.display = true; // Asumimos que hay más pokemon
 }
 
 document.getElementById('prevButton').addEventListener('click', () => {
@@ -129,6 +131,8 @@ document.getElementById('nextButton').addEventListener('click', () => {
     currentOffset += limit;
     displayPokemon();
 });
+
+// fin de botones de paginacion
 
 // Llama a displayPokemon para cargar los primeros 20 Pokémon
 displayPokemon();
