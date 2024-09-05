@@ -2,6 +2,7 @@ const contenedor = document.getElementById('container');
 const btnAleatorio = document.getElementById('btnAleatorio');
 const inputPokemon = document.getElementById('inputPokemon');
 const pPuntuacion = document.getElementById('punt')
+const rachaPun = document.getElementById('racha')
 let pokemonAleatorio = '';
 let puntuacion = 0;
 
@@ -61,6 +62,7 @@ function comparar(){
         pPuntuacion.textContent = puntuacion
         inputPokemon.value = '';
         console.log(puntuacion)
+        savePunctLocalStorage()
     }else{
         inputPokemon.value = '';
     }
@@ -74,6 +76,19 @@ inputPokemon.addEventListener('keydown', (event) => {
         comparar();
     }
 });
+
+function savePunctLocalStorage(){
+    localStorage.setItem('racha',JSON.stringify(puntuacion))
+}
+
+function loadPunctFromLocalStorage(){
+    const racha = localStorage.getItem('racha');
+    if(racha){
+        rachaPun.textContent = JSON.parse(racha)
+    }
+}
+
+loadPunctFromLocalStorage()
 
 // Efectos
 function crearEstrella(x, y, tamaño) {
