@@ -31,11 +31,14 @@ async function displayPokemon() {
     if (pokeCargados) {
         for (const pok of pokeCargados) {
             const detallePokemon = await obtenerDetallePokemon(pok.url);
+            const tipo1 = capitalizeFirstLetter(detallePokemon.types[0].type.name); // Primer tipo siempre existe
+            const tipo2 = capitalizeFirstLetter(detallePokemon.types[1] ? detallePokemon.types[1].type.name : ''); // Validamos si existe el segundo tipo
+
             contenedor += `
                 <div class="pokemon-card">
                     <h3>${capitalizeFirstLetter(detallePokemon.name)}</h3>
                     <img class="sprite" src="${detallePokemon.sprites.front_default}" alt="${detallePokemon.name}">
-                    <a href="#">Ver más...</a>
+                    <p> Tipo: ${tipo1} ${tipo2}</p>
                 </div>
             `;
         }
