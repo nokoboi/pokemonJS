@@ -441,6 +441,9 @@ h3{
 
     .starter-container{
         margin: 1rem;
+    }
+
+    .videojuegos{
         flex-direction: column;
     }
 }
