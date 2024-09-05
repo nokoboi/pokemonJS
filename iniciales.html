@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciales</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav class="enlaces">
+            <a href="buscadorpokemon.html">Buscador</a>
+            <a href="index.html">Pokémon del día</a>
+            <a href="iniciales.html">Iniciales</a>
+        </nav>
+    </header>
+    <main>
+        <h1 class="titulo">Pokémon Iniciales</h1>
+        <section>
+            <div class="carousel-container">
+                <div class="carousel-item active">
+                    <img src="assets/kanto.jpg" alt="Imagen 1">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Kanto</h2>
+                        <p>
+                            Bulbasaur, Charmander y Squirtle
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/johto.webp" alt="Imagen 2">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Johto</h2>
+                        <p>
+                            Chikorita, Cyndaquil y Totodile
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/hoenn.png" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Hoenn</h2>
+                        <p>
+                            Treecko, Torchick y Mudkip
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/sinnoh.jpg" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Sinnoh</h2>
+                        <p>
+                            Turtwig, Chimchar y Piplup
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/5gen.webp" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Teselia</h2>
+                        <p>
+                            Snivy, Tepig y Oshawott
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/6gen.jpg" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Kalos</h2>
+                        <p>
+                            Chespin, Fennekin y Froakie
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/7gen.jpg" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Alola</h2>
+                        <p>
+                            Rowlet, Litten y Popplio
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/8gen.webp" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Galar</h2>
+                        <p>
+                            Grookie, Scorbunny y Sobble
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/9gen.jpg" alt="Imagen 3">
+                    <div class="carousel-text">
+                        <h2>Iniciales de Paldea</h2>
+                        <p>
+                            Spirigatito, Fuecoco y Quaxly
+                        </p>
+                    </div>
+                </div>
+
+                <button class="carousel-button prev" onclick="changeSlide(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="changeSlide(1)">&#10095;</button>
+                <button class="pause-play-button" onclick="togglePausePlay()">Pausar</button>
+            </div>
+        </section>
+        <section class="starter-container">
+            <div>
+                <h3>¿Qué es un Pokémon inicial?</h3>
+                <p>
+                    Un Pokémon inicial <span class="negrita">(Starter Pokémon en inglés, はじめてのポケモン en japonés)</span> es el Pokémon con el que un
+                    entrenador comienza su aventura. Muchos entrenadores prefieren tener en su equipo dicho Pokémon
+                    porque con él establecen una importante relación de amistad y confianza, o porque creen que es el
+                    mejor Pokémon para su aventura.
+
+                    Sus tipos están equilibrados unos de otros. Por ejemplo, el tipo agua derrota al tipo fuego, el tipo
+                    fuego derrota al tipo planta y el tipo planta derrota al tipo agua.
+                </p>
+            </div>
+            <div>
+                <h3>En los videojuegos:</h3>
+                <div class="videojuegos">
+                    <img src="assets/ventajas.webp" alt="">
+                    <p>En la mayoría de los videojuegos, al obtenerlos, los Pokémon iniciales están en el nivel 5
+                        disponiendo de dos movimientos: uno que causa daño al oponente (placaje, arañazo, destructor) y otro
+                        de estado. Sin embargo, desde la sexta generación en adelante, los Pokémon conocen un tercer
+                        movimiento del tipo al que pertenecen. Generalmente, los entrenadores pueden elegir entre un Pokémon
+                        de tipo planta, agua o fuego, estableciendo una relación circular de ventajas y desventajas entre
+                        los tres tipos <span class="negrita">(Planta > Agua; Fuego > Planta; Agua > Fuego).</span> El rival siempre suele escoger el
+                        Pokémon de tipo ventajoso contra el del jugador.
+                    </p>
+                    
+                </div>                
+            </div>
+        </section>
+        <br>
+    </main>
+
+    <script src="js/carousel.js"></script>
+</body>
+
+</html>
