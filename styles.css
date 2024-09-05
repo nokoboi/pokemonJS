@@ -137,7 +137,7 @@ h2 {
 }
 
 .buscador button:hover {
-    background-color: #0056b3; /* Fondo más oscuro al pasar sobre el botón */
+    background-color: rgb(95, 95, 95); /* Fondo más oscuro al pasar sobre el botón */
 }
 
 .cardAleatorio {
