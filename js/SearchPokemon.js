@@ -15,8 +15,16 @@ async function obtenerDetallePokemon(url) {
 let currentOffset = 0;
 const limit = 20;
 
+function showLoading(){
+    document.getElementById('loading').style.display = 'flex'
+}
+
+function hideLoading(){
+    document.getElementById('loading').style.display = 'none'
+}
+
 async function displayPokemon() {
-    
+    showLoading()
     const pokeCargados = await obtenerPokemon(limit, currentOffset);
     let contenedor = '';
 
@@ -36,6 +44,7 @@ async function displayPokemon() {
     }
 
     document.getElementById('principal').innerHTML = contenedor;
+    hideLoading()
     updatePaginationButtons();
 }
 
@@ -115,6 +124,13 @@ document.getElementById('pokemon-search').addEventListener('input', async () => 
 // fin busqueda pokemon
 
 // Botones de paginacion
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Para un desplazamiento suave
+    });
+}
+
 function updatePaginationButtons() {
     document.getElementById('prevButton').style.display = currentOffset > 0 ? 'inline' : 'none';
     document.getElementById('nextButton').style.display = true; // Asumimos que hay más pokemon
@@ -124,12 +140,14 @@ document.getElementById('prevButton').addEventListener('click', () => {
     if (currentOffset > 0) {
         currentOffset -= limit;
         displayPokemon();
+        scrollToTop()
     }
 });
 
 document.getElementById('nextButton').addEventListener('click', () => {
     currentOffset += limit;
     displayPokemon();
+    scrollToTop()
 });
 
 // fin de botones de paginacion

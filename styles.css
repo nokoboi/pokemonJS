@@ -4,9 +4,8 @@
     --primary: #137c32;
     --secundary: rgb(0, 0, 0);
     --secundaryLight: #f8f8f8AA;
-	--secundaryTrans: rgba(36,23,68,0.5);
+	--secundaryTrans: rgba(29, 29, 29, 0.5);
     --radio-borde: 0.5rem;
-	--average: #776a48;
 }
 
 .img {
@@ -184,8 +183,6 @@ h1 {
     color: #FFD700
 }
 
-
-
 .container {
 	width: 95%;
 	max-width: 1200px;
@@ -196,6 +193,7 @@ h1 {
 	display: flex;
 	flex-wrap: wrap;
 	padding: 0.3rem;
+    margin-bottom: 2rem;
 }
 
 .principal .pokemon-card {
@@ -258,6 +256,35 @@ h3{
 /* Fin loader */
 
 
+/* Botón paginación */
+#pagination-controls{
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--secundaryTrans);
+    padding-top: 1rem;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.botonPag{
+    background-color: #FFD700;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+    margin-bottom: 3rem;
+}
+
+.botonPag:hover{
+    background-color: #a88f00;
+    transition: background-color 0.3s, color 0.3s;
+}
+/* Fin botón paginación */
+
+
 /* Estilos Responsivos */
 @media (max-width: 768px) {
     .enlaces a {
@@ -283,6 +310,11 @@ h3{
 
     .desc{
         padding: 1rem;
+    }
+
+    .principal{
+        display: flex;
+        flex-direction: column;
     }
 
 }
